@@ -122,16 +122,60 @@ TODO: Is this really needed? (too excessive perhaps)
       
         <div class="method-description">
           <p>
-TODO: Test this function with no pair-value arrays
+Given an array, it transform it to a hash
 </p>
+<p>
+Useful when making enumerable methods like select, any?, etc, over a hash.
+This functions will return a 2 dimensional array which can be easily
+retransformed to a hash with this funciton.
+</p>
+<p>
+There&#8216;re 3 general types of transformation
+</p>
+<ol>
+<li>One dimensional array
+
+</li>
+</ol>
+<pre>
+  [:a, :b, :c].to_hash # =&gt; {:a =&gt; nil, :b =&gt; nil, :c =&gt; nil}
+</pre>
+<ol>
+<li>Two dimensional array
+
+</li>
+</ol>
+<pre>
+  [[:a,'A'], [:b,'B'], [:c,'C']].to_hash # =&gt; {:a =&gt; 'A',:b =&gt; 'B',:c =&gt; 'C'}
+</pre>
+<ol>
+<li>Multidimensional array. The first element of each array is always the key
+
+</li>
+</ol>
+<pre>
+  [[:a, ['a','A']].to_hash # =&gt; {:a =&gt; ['a','A']}
+  [[:a, 1, 'letter', 'a']].to_hash # =&gt; {:a =&gt; [1,'letter','a']}
+</pre>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000007-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/array/transformations.rb, line 9</span>
- 9:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>
-10:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inject</span>({}){ <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">pair</span><span class="ruby-operator">|</span> <span class="ruby-identifier">memo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">pair</span>.<span class="ruby-identifier">first</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">last</span>) }
-11:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/array/transformations.rb, line 27</span>
+27:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>
+28:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, <span class="ruby-identifier">pair</span><span class="ruby-operator">|</span>
+29:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Array</span>)
+30:               <span class="ruby-identifier">key</span> = <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">shift</span>
+31:               <span class="ruby-identifier">value</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">size</span>
+32:               <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">then</span> <span class="ruby-keyword kw">nil</span>
+33:               <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">then</span> <span class="ruby-identifier">pair</span>.<span class="ruby-identifier">to_s</span>
+34:               <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">pair</span>; <span class="ruby-keyword kw">end</span>
+35:               <span class="ruby-identifier">memo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>)  
+36:             <span class="ruby-keyword kw">else</span>
+37:               <span class="ruby-identifier">memo</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">pair</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>)
+38:             <span class="ruby-keyword kw">end</span>
+39:           <span class="ruby-keyword kw">end</span>
+40:         <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
