@@ -1,7 +1,0 @@
-== ExcessiveSupport
-
-If you like ActiveSupport and you want more, you need ExcessiveSupport
-
-To check out what is this about, please check the inclued rdoc documentation
-
-Copyright (c) 2009 Marcos Arias (http://agil-e.com), released under the MIT license
