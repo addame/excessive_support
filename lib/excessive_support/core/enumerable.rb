@@ -1,7 +1,7 @@
-module Enumerable #:nodoc:
+module Enumerable
   # Is this enumerable not empty?
   #
-  # Useful while working over an array an is necessary to check if it is empty
+  # Useful to check if an array is empty before some operations with it
   # 
   #   arr = [0,1,1,2,3]
   #   arr.select{|v| v < 0} # negative values only

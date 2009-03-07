@@ -1,5 +1,5 @@
 module ExcessiveSupport #:nodoc:
-  module Core
+  module Core #:nodoc:
     module Hash # :nodoc:
       # Asks if certain values are present inside a hash
       module IncludeValues

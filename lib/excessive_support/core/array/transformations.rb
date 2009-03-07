@@ -3,7 +3,7 @@ module ExcessiveSupport #:nodoc:
     module Array #:nodoc:
       # Array transormations
       #
-      # TODO: Is this really neede? (too excessive perhaps)
+      # TODO: Is this really needed? (too excessive perhaps)
       module Transformations
         # TODO: Test this function with no pair-value arrays
         def to_hash

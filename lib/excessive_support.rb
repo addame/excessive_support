@@ -1,3 +1,4 @@
+# Even more extensions to ruby objects
 module ExcessiveSupport
 end
 
