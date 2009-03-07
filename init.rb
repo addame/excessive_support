@@ -1,0 +1,1 @@
+require 'excessive_support'
