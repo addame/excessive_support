@@ -16,8 +16,9 @@ end
 desc 'Generate documentation for the vai plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Vai'
+  rdoc.title    = 'ExcessiveSupport -- Even more utility extensions'
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.options << '--charset' << 'utf-8'
+  rdoc.rdoc_files.include('README.rdoc', 'MIT-LICENSE')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
