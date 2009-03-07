@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title>yizzreel/excessive_support @ GitHub</title>
+	<title>Marcos Arias / Projects / Excessive Support</title>
 	
 	<style type="text/css">
 		body {
@@ -18,12 +18,12 @@
       margin: 0 auto;
       width: 700px;
     }
-		h1 { font-size: 3.8em; color: #23def6; margin-bottom: 3px; }
+		h1 { font-size: 3.8em; color: #FFF; margin-bottom: 3px; }
 		h1 .small { font-size: 0.4em; }
 		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #23def6; }
-    h3 { text-align: center; color: #23def6; }
-    a { color: #23def6; }
+		h2 { font-size: 1.5em; color: #FFF; }
+    h3 { text-align: center; color: #FFF; }
+    a { color: #FFF; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
 		pre { background: #000; color: #fff; padding: 15px;}
@@ -34,7 +34,8 @@
 </head>
 
 <body>
-  <a href="http://github.com/yizzreel/excessive_support"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <a href="http://github.com/yizzreel/excessive_support">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
   
   <div id="container">
 
@@ -52,18 +53,32 @@
       Rails plugin to add a few more fancy functions to your projects
     </div>
 
-    <p>If you like ActiveSupport and you want more, you need ExcessiveSupport. It continues where ActiveSupport stopped. 
+    <p>If you like ActiveSupport and you want more, you need ExcessiveSupport. It continues where ActiveSupport stopped.</p>
+    
+    <h3>Some features are:</h3>
+    
+    <ul>
+      <li>Reversible questions like "not_nil?", "not_blank?".</li>
+      <li>Hash to hash comparisons with "include_values?".</li>
+      <li>Blocks as conditions statements with "and_then" and "otherwise"</li>
+    </ul>
+    
+    <h2>Dependencies</h2>
+    <p>Ruby on Rails</p>
 
-h3. Some features are:
-* Reversible questions like "not_nil?", "not_blank?".
-* Hash to hash comparisons with "include_values?".
-* Blocks as conditions statements with "and_then" and "otherwise"</p><h2>Dependencies</h2>
-<p>Ruby on Rails</p>
-<h2>Install</h2>
-<p>git submodule add git://github.com/yizzreel/excessive_support.git vendor/plugins/excessive_support
-git submodule init</p>
-<h2>License</h2>
-<p>MIT-LICENSE. Copyright (c) 2009 Marcos Arias (http://agil-e.com)</p>
+    <h2>Install</h2>
+    
+    <p>Using git submodules:
+    <pre>git submodule add git://github.com/yizzreel/excessive_support.git vendor/plugins/excessive_support
+git submodule init</pre>
+    </p>
+    <p>Using rails plugin installer:
+    <pre>script/plugin install git://github.com/yizzreel/excessive_support.git</pre>
+    </p>
+      
+    <h2>License</h2>
+    
+    <p>Terms under MIT-LICENSE. (included in the plugin)</p>
 
 
     <h2>Download</h2>
@@ -78,8 +93,11 @@ git submodule init</p>
     </p>
       
     <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/yizzreel/excessive_support">yizzreel/excessive_support</a>
+      <p>get the source code on GitHub : <a href="http://github.com/yizzreel/excessive_support">yizzreel/excessive_support</a></p>
+      <p>Copyright (c) 2009 Marcos Arias</p>
     </div>
+    
+    
     
   </div>
 
