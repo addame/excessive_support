@@ -1,5 +1,5 @@
 == ExcessiveSupport
 
-If you like ActiveSupport and you want more, you need excessive support
+If you like ActiveSupport and you want more, you need ExcessiveSupport
 
 Copyright (c) 2009 Marcos Arias (http://agil-e.com), released under the MIT license
