@@ -17,8 +17,12 @@ module ExcessiveSupport #:nodoc:
         # def only(*selections)
         #   self.select { |key, value| selections.include? key.to_sym }.to_hash
         # end
-        alias_method :only, :slice
-        alias_method :only!, :slice!
+        
+        
+        def self.included(base)
+          base.send :alias_method, :only, :slice
+          base.send :alias_method, :only!, :slice!
+        end
         
         # The hash with certain values overrided
         def with(overrides = {})
