@@ -8,7 +8,8 @@ module ExcessiveSupport #:nodoc:
         # Given an array, it transform it to a hash
         #
         # Useful when making enumerable methods like select, any?, etc, over a hash.
-        # This functions will return a 2 dimensional array which can be easily retransformed to a hash with this funciton.
+        # This enumerable methods will return a 2 dimensional array which can 
+        # be easily retransformed to a hash with using to_hash method.
         #
         # There're 3 general types of transformation
         #

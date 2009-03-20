@@ -2,8 +2,6 @@ module ExcessiveSupport #:nodoc:
   module Core #:nodoc:
     module Hash #:nodoc:
       # Various methods to select certain values from a hash
-      #
-      # TODO: implement ability to pass a block as argument
       module Selectable
 
         # The hash without certain values
@@ -29,6 +27,7 @@ module ExcessiveSupport #:nodoc:
           self.merge overrides
         end
         
+        # Same as with but it overrides receiver hash
         def with!(overrides = {})
           self.merge! overrides
         end
