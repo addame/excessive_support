@@ -76,10 +76,6 @@
       <p>
 Various methods to select certain values from a hash
 </p>
-<p>
-TODO: make some elements destructive TODO: implement ability to pass a
-block as argument
-</p>
 
     </div>
 
@@ -90,9 +86,9 @@ block as argument
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000009">except</a>&nbsp;&nbsp;
-      <a href="#M000010">only</a>&nbsp;&nbsp;
-      <a href="#M000011">with</a>&nbsp;&nbsp;
+      <a href="#M000007">included</a>&nbsp;&nbsp;
+      <a href="#M000008">with</a>&nbsp;&nbsp;
+      <a href="#M000009">with!</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -112,83 +108,93 @@ block as argument
 
     <!-- if method_list -->
     <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">included</span><span class="method-args">(base)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The hash <a href="Selectable.html#M000008">with</a> only certain values !!
+Already exists in ActiveSupport (named slice) def only(*selections)
+</p>
+<pre>
+  self.select { |key, value| selections.include? key.to_sym }.to_hash
+</pre>
+<p>
+end
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 20</span>
+20:         <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+21:           <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:only</span>, <span class="ruby-identifier">:slice</span>
+22:           <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:alias_method</span>, <span class="ruby-identifier">:only!</span>, <span class="ruby-identifier">:slice!</span>
+23:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
 
         <div class="method-heading">
-          <a href="#M000009" class="method-signature">
-          <span class="method-name">except</span><span class="method-args">(*exclusions)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-The hash without certain values
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 11</span>
-11:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">except</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">exclusions</span>)
-12:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">exclusions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span> }.<span class="ruby-identifier">to_hash</span>
-13:         <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
-
-        <div class="method-heading">
-          <a href="#M000010" class="method-signature">
-          <span class="method-name">only</span><span class="method-args">(*selections)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-The hash <a href="Selectable.html#M000011">with</a> <a
-href="Selectable.html#M000010">only</a> certain values
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000010-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 16</span>
-16:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">only</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">selections</span>)
-17:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">selections</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span> }.<span class="ruby-identifier">to_hash</span>
-18:         <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
-
-        <div class="method-heading">
-          <a href="#M000011" class="method-signature">
+          <a href="#M000008" class="method-signature">
           <span class="method-name">with</span><span class="method-args">(overrides = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-The hash <a href="Selectable.html#M000011">with</a> certain values
+The hash <a href="Selectable.html#M000008">with</a> certain values
 overrided
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000011-source">
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 21</span>
-21:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with</span>(<span class="ruby-identifier">overrides</span> = {})
-22:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">overrides</span>
-23:         <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 26</span>
+26:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with</span>(<span class="ruby-identifier">overrides</span> = {})
+27:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">overrides</span>
+28:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">with!</span><span class="method-args">(overrides = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="Selectable.html#M000008">with</a> but it overrides
+receiver hash
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/selectable.rb, line 31</span>
+31:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with!</span>(<span class="ruby-identifier">overrides</span> = {})
+32:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">merge!</span> <span class="ruby-identifier">overrides</span>
+33:         <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

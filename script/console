@@ -1,8 +1,0 @@
-#!/usr/local/bin/ruby
-
-libs =  " -r irb/completion"
-libs << " -r active_support"
-libs << " -r excessive_support"
-puts 'Initialzing irb with support loaded'
-
-exec "irb -Ilib #{libs} --simple-prompt"

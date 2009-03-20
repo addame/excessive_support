@@ -92,12 +92,10 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000002">and</a>&nbsp;&nbsp;
       <a href="#M000001">and_then</a>&nbsp;&nbsp;
-      <a href="#M000005">not_blank?</a>&nbsp;&nbsp;
-      <a href="#M000006">not_nil?</a>&nbsp;&nbsp;
-      <a href="#M000004">or</a>&nbsp;&nbsp;
-      <a href="#M000003">otherwise</a>&nbsp;&nbsp;
+      <a href="#M000003">not_blank?</a>&nbsp;&nbsp;
+      <a href="#M000004">not_nil?</a>&nbsp;&nbsp;
+      <a href="#M000002">otherwise</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -119,20 +117,6 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
-
-        <div class="method-heading">
-          <span class="method-name">and</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="Object.html#M000001">and_then</a>
-</p>
-        </div>
-      </div>
-
       <div id="method-M000001" class="method-detail">
         <a name="M000001"></a>
 
@@ -144,72 +128,59 @@ Alias for <a href="Object.html#M000001">and_then</a>
       
         <div class="method-description">
           <p>
-If self is not nil <a href="Object.html#M000004">or</a> false, it executes
-the given block, <a href="Object.html#M000003">otherwise</a> return self
+If self is not nil or false, it executes the given block, <a
+href="Object.html#M000002">otherwise</a> return self
 </p>
 <p>
-Useful to remove large if chains
+Useful to remove large if chains or to ensure a variable exists before
+doing something
+</p>
+<pre>
+  @result = SomeOperation
+  @result.and_then do
+    @result.foo = 'bar'
+    @result.bar = 'foo'
+  end
+  # The block it's exectued only if @result is not nil or false
+</pre>
+<p>
+This method also works with procs in both sides
 </p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000001-source">
 <pre>
-   <span class="ruby-comment cmt"># File lib/excessive_support/core/object/comparable.rb, line 5</span>
-5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">and_then</span>
-6:     <span class="ruby-keyword kw">self</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">yield</span>
-7:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/object/comparable.rb, line 16</span>
+16:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">and_then</span>
+17:     ((<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>)) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">self</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">yield</span>
+18:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
 
         <div class="method-heading">
-          <a href="#M000005" class="method-signature">
+          <a href="#M000003" class="method-signature">
           <span class="method-name">not_blank?</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Have this object any non-blank value?
+Have this object any non-blank value? To use in clauses like <tt>if
+@foo.not_blank?</tt> instead of <tt>if !@foo.blank?</tt>
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
 <pre>
-   <span class="ruby-comment cmt"># File lib/excessive_support/core/object/reversible.rb, line 3</span>
-3:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_blank?</span>
-4:     <span class="ruby-operator">!</span><span class="ruby-identifier">blank?</span>
-5:   <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
-
-        <div class="method-heading">
-          <a href="#M000006" class="method-signature">
-          <span class="method-name">not_nil?</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Is this object not nil?
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/object/reversible.rb, line 8</span>
- 8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_nil?</span>
- 9:     <span class="ruby-operator">!</span><span class="ruby-identifier">nil?</span>
-10:   <span class="ruby-keyword kw">end</span>
+   <span class="ruby-comment cmt"># File lib/excessive_support/core/object/reversible.rb, line 4</span>
+4:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_blank?</span>
+5:     <span class="ruby-operator">!</span><span class="ruby-identifier">blank?</span>
+6:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -219,41 +190,70 @@ Is this object not nil?
         <a name="M000004"></a>
 
         <div class="method-heading">
-          <span class="method-name">or</span><span class="method-args">()</span>
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">not_nil?</span><span class="method-args">()</span>
+          </a>
         </div>
       
         <div class="method-description">
           <p>
-Alias for <a href="Object.html#M000003">otherwise</a>
+Is this object not nil? To use in clauses like <tt>if @foo.not_nil?</tt>
+instead of <tt>if !@foo.nil?</tt>
 </p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/object/reversible.rb, line 10</span>
+10:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">not_nil?</span>
+11:     <span class="ruby-operator">!</span><span class="ruby-identifier">nil?</span>
+12:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
 
         <div class="method-heading">
-          <a href="#M000003" class="method-signature">
+          <a href="#M000002" class="method-signature">
           <span class="method-name">otherwise</span><span class="method-args">() {|| ...}</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-If self is nil <a href="Object.html#M000004">or</a> false, it executes the
-given block, <a href="Object.html#M000003">otherwise</a> return self
+If self is nil or false, it executes the given block, <a
+href="Object.html#M000002">otherwise</a> return self
 </p>
 <p>
-Useful to remove large if/else chains
+Useful to remove large if/else chains or for encapsulate variable
+initializactions
+</p>
+<pre>
+  def something
+    @something.otherwise do
+      @something = SomeClass.new
+      @something.foo = 'bar'
+      @something.bar = 'foo'
+      @something
+    end
+  end
+  # The block passed to otherwise it is only exectued the first time
+  # something method is called
+</pre>
+<p>
+This method also works with procs in both sides
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000003-source">
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/object/comparable.rb, line 13</span>
-13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">otherwise</span>
-14:     <span class="ruby-keyword kw">self</span> <span class="ruby-operator">||</span> <span class="ruby-keyword kw">yield</span>
-15:   <span class="ruby-keyword kw">end</span>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/object/comparable.rb, line 37</span>
+37:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">otherwise</span>
+38:     ((<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>)) <span class="ruby-operator">?</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">self</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">yield</span>
+39:   <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>

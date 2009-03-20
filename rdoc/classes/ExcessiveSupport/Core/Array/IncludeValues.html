@@ -74,7 +74,9 @@
 
     <div id="description">
       <p>
-Asks if certain values are present inside an array
+Asks if certain values are present inside an array TODO: Make a reverse
+method of <a href="IncludeValues.html#M000006">include_values?</a>
+(not_include_values?)
 </p>
 
     </div>
@@ -86,7 +88,7 @@ Asks if certain values are present inside an array
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000008">include_values?</a>&nbsp;&nbsp;
+      <a href="#M000006">include_values?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -108,11 +110,11 @@ Asks if certain values are present inside an array
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="#M000008" class="method-signature">
+          <a href="#M000006" class="method-signature">
           <span class="method-name">include_values?</span><span class="method-args">(*values)</span>
           </a>
         </div>
@@ -125,31 +127,24 @@ Does this array include the given values?
 Useful for complicated array comparisons
 </p>
 <p>
-An example would be
+An example might be
 </p>
+<pre>
+  [:up,:right,[:up,:right],:down,:left].include_values?(:up, [:up, :right]) # =&gt; true
+  [:up,:right,[:up,:right],:down,:left].include_values?(:up, [:up, :right, [:down, :right]) # =&gt; false
+</pre>
 <p>
-[:up,:right,[:up,:right],:down,:left].<a
-href="IncludeValues.html#M000008">include_values?</a>(:up, [:up, :right]) #
-=&gt; true [:up,:right,[:up,:right],:down,:left].<a
-href="IncludeValues.html#M000008">include_values?</a>(:up, [:up, :right,
-[:down, :right]) # =&gt; false
+This method performs an array.collect instead of the easiear array.any?
+because it is desirable to return true if the *values array is empty
 </p>
-<p>
-This do a values.collect instead of the easiear values.any? because it is
-desirable to return true if the *values array is empty collect does not
-perform anything if *values is empty, then returns true
-</p>
-<p>
-things = [] shelve =
-[&#8216;books&#8217;,&#8217;magazines&#8217;,&#8217;dust&#8217;]
-shelve.include_values? things # =&gt; true, things is empty
-</p>
-<p>
-TODO: Change method name?
-</p>
+<pre>
+  things = []
+  shelve = ['books','magazines','dust']
+  shelve.include_values? things # =&gt; true, things is empty
+</pre>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/excessive_support/core/array/include_values.rb, line 23</span>
 23:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include_values?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">values</span>)

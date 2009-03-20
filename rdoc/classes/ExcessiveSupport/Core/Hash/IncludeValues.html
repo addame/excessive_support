@@ -74,7 +74,9 @@
 
     <div id="description">
       <p>
-Asks if certain values are present inside a hash
+Asks if certain values are present inside a hash TODO: Make a reverse
+method of <a href="IncludeValues.html#M000010">include_values?</a>
+(not_include_values?)
 </p>
 
     </div>
@@ -86,7 +88,7 @@ Asks if certain values are present inside a hash
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000012">include_values?</a>&nbsp;&nbsp;
+      <a href="#M000010">include_values?</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -108,11 +110,11 @@ Asks if certain values are present inside a hash
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
 
         <div class="method-heading">
-          <a href="#M000012" class="method-signature">
+          <a href="#M000010" class="method-signature">
           <span class="method-name">include_values?</span><span class="method-args">(hash)</span>
           </a>
         </div>
@@ -125,41 +127,31 @@ Does this hash include the given values?
 Useful to compare big hashes (option hashes)
 </p>
 <p>
-An example would be a set of keystrokes for a FPS
+An example might be a set of keystrokes for a FPS
 </p>
-<p>
-{ :up =&gt; &#8216;W&#8217;, :left =&gt; &#8216;A&#8217;, :right =&gt;
-[&#8216;D&#8217;,&#8217;E&#8217;], :down =&gt; &#8216;S&#8217; }.<a
-href="IncludeValues.html#M000012">include_values?</a>(:up =&gt;
-&#8216;W&#8217;, :right =&gt; [&#8216;D&#8217;,&#8217;E&#8217;]) # =&gt;
-true, I have defined the basic movement configuration { :up =&gt;
-&#8216;W&#8217;, :right =&gt; [&#8216;D&#8217;, &#8216;E&#8217;] }.<a
-href="IncludeValues.html#M000012">include_values?</a>(:down =&gt;
-&#8216;S&#8217;) # =&gt; false, wrong configuration options
-</p>
-<p>
-This do a hash.collect instead of the easiear hash.any? because it is
-desirable to return true if the hash given is empty
-</p>
-<p>
-things = {} shelve = { :books =&gt; &#8216;horror, fantasy&#8217;,
-:magazines =&gt; &#8216;lifehack, nature&#8217;, :dust =&gt; false }
-</p>
-<p>
-shelve.include_values?(things) # =&gt; true, things is empty
-</p>
-<p>
-TODO: Change method name?
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000012-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/include_values.rb, line 23</span>
-23:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include_values?</span>(<span class="ruby-identifier">hash</span>)
-24:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'The argument passed must be a Hash'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
-25:           <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span> }.<span class="ruby-identifier">not_include?</span>(<span class="ruby-keyword kw">false</span>)
-26:         <span class="ruby-keyword kw">end</span>
+  { :up =&gt; 'W', :left =&gt; 'A', :right =&gt; ['D','E'], :down =&gt; 'S' }.include_values?(:up =&gt; 'W', :right =&gt; ['D','E']) # =&gt; true, I have defined the basic movement configuration
+  { :up =&gt; 'W', :right =&gt; ['D', 'E'] }.include_values?(:down =&gt; 'S') # =&gt; false, wrong configuration options
+</pre>
+<p>
+This method performs a hash.collect instead of the easiear hash.any?
+because it is desirable to return true if the given hash is empty
+</p>
+<pre>
+  things = {}
+  shelve = { :books =&gt; 'horror, fantasy', :magazines =&gt; 'lifehack, nature', :dust =&gt; false }
+
+  shelve.include_values?(things) # =&gt; true, things is empty
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/excessive_support/core/hash/include_values.rb, line 24</span>
+24:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include_values?</span>(<span class="ruby-identifier">hash</span>)
+25:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'The argument passed must be a Hash'</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Hash</span>)
+26:           <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span> }.<span class="ruby-identifier">not_include?</span>(<span class="ruby-keyword kw">false</span>)
+27:         <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
